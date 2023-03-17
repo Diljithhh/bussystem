@@ -67,9 +67,11 @@ class CustomTextButton extends StatelessWidget {
   final Color backgroundColor;
   final Color buttonTextColor;
   final String buttonText;
+  final double buttonTextSize;
+
   final VoidCallback onPressed;
 
-  CustomTextButton({
+  CustomTextButton({ this.buttonTextSize=20,
     Key? key,
     required this.width,
     required this.height,
@@ -92,7 +94,7 @@ class CustomTextButton extends StatelessWidget {
               style: TextStyle(
                 color: buttonTextColor,
                 fontWeight: FontWeight.w500,
-                fontSize: 20,
+                fontSize: buttonTextSize,
               ),
               )),
     );
