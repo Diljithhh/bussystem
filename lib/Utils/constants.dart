@@ -1,4 +1,5 @@
-const String BaseUrl = " http://flutter.noviindus.co.in/api/";
-const String logIn = "LoginApi";
-const String Refresh = "LoginApi";
+const String BaseUrl = "http://flutter.noviindus.co.in/api/";
+const String logInApi = "LoginApi";
+const String Refresh = "api/token/refresh/";
+const String BuslistUrl="BusListApi/";
 

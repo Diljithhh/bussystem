@@ -1,10 +1,9 @@
+import 'package:bussystem/Providers/LoginServiceProvider.dart';
 import 'package:bussystem/UI/LaunchScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MaterialApp(debugShowCheckedModeBanner: false,
-    home: 
-     MyApp()));
+  runApp(const MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -16,37 +15,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
+  void initState() {
+    //LoginServiceProvider.instance.login();
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: LaunchWidget(),);
+    return const Scaffold(
+      body: LaunchWidget(),
+    );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class MangeSeat extends StatefulWidget {
   const MangeSeat({super.key});
@@ -79,9 +77,33 @@ class _MangeSeatState extends State<MangeSeat> {
                 ],
               ),
             )
-          ],
+       , oneTwoSeatLayout()  ],
         ),
       ),
+    );
+  }
+}
+
+class oneTwoSeatLayout extends StatelessWidget {
+  const oneTwoSeatLayout({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [SizedBox(height: 20,),
+        Row(mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              padding: EdgeInsets.only(right: 50,top: 40),
+              child: Image.asset('assets/images/DriverSeat.png'),),
+          ],
+        ),
+    Row(
+      
+      children: [ Container(child: Image.asset('assets/images/Seat.png'),), SizedBox(width: 10,),  
+     Container(child: Image.asset('assets/images/Seat.png'),),
+     SizedBox(width: 60,),
+     Container(child: Image.asset('assets/images/Seat.png'),),Container(child: Image.asset('assets/images/Seat.png'),)],)  ],
     );
   }
 }

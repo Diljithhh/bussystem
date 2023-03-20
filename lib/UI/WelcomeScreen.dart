@@ -1,3 +1,5 @@
+import 'package:bussystem/Providers/BusListProvider.dart';
+import 'package:bussystem/Providers/LoginServiceProvider.dart';
 import 'package:bussystem/UI/HomeScreen.dart';
 import 'package:bussystem/UI/LaunchScreen.dart';
 import 'package:flutter/material.dart';
@@ -96,12 +98,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               buttonText: 'Login',
               backgroundColor: Colors.red,
               buttonTextColor: Colors.white,
-              onPressed: () {
+              onPressed: () async {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => HomeScreenUi(),
                     ));
+
+                await LoginServiceProvider.instance.login();
+                await BusListProvider.instance.BuslistService();
               },
               width: 300,
               height: 60,

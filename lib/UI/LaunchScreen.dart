@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:ffi';
 
+import 'package:bussystem/Providers/LoginServiceProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -40,15 +41,18 @@ class _LaunchWidgetState extends State<LaunchWidget> {
             left: 10,
             right: 10,
             bottom: 10,
-            child: CustomTextButton(buttonText: 'Get Started',
+            child: CustomTextButton(
+              buttonText: 'Get Started',
               backgroundColor: Colors.white,
               buttonTextColor: Colors.red,
-              onPressed: () {
+              onPressed: ()  {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => WelcomeScreen(),
                     ));
+
+
               },
               width: 300,
               height: 60,
@@ -71,7 +75,8 @@ class CustomTextButton extends StatelessWidget {
 
   final VoidCallback onPressed;
 
-  CustomTextButton({ this.buttonTextSize=20,
+  CustomTextButton({
+    this.buttonTextSize = 20,
     Key? key,
     required this.width,
     required this.height,
@@ -90,13 +95,14 @@ class CustomTextButton extends StatelessWidget {
           color: backgroundColor, borderRadius: BorderRadius.circular(15)),
       child: TextButton(
           onPressed: onPressed,
-          child: Text(buttonText,
-              style: TextStyle(
-                color: buttonTextColor,
-                fontWeight: FontWeight.w500,
-                fontSize: buttonTextSize,
-              ),
-              )),
+          child: Text(
+            buttonText,
+            style: TextStyle(
+              color: buttonTextColor,
+              fontWeight: FontWeight.w500,
+              fontSize: buttonTextSize,
+            ),
+          )),
     );
   }
 }
