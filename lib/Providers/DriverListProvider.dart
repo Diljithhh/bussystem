@@ -29,6 +29,10 @@ class DriverListProvider extends ChangeNotifier {
 
   final accesstoken = LoginServiceProvider.instance.refreshedAccesstoken;
   DriverlistServiceStatus driverlistsytatus = DriverlistServiceStatus.idleState;
+    DriveraddedStatus driveraddedStatus = DriveraddedStatus.idleState;
+    Driverlistdeleted driverlistdeleted = Driverlistdeleted.idleState;
+
+
 
   Future getDriverList() async {
     driverlistsytatus = DriverlistServiceStatus.loadingState;
@@ -68,7 +72,6 @@ class DriverListProvider extends ChangeNotifier {
       {required String name,
       required String mobile,
       required String licensenumber}) async {
-    DriveraddedStatus driveraddedStatus = DriveraddedStatus.idleState;
     final url = "${BaseUrl + DriverlistUrl}/$urlId/";
 
     final header = {"Authorization": "Bearer " + accesstoken};
@@ -91,7 +94,6 @@ class DriverListProvider extends ChangeNotifier {
   }
 
   Future deleteDriver({required String id}) async {
-    Driverlistdeleted driverlistdeleted = Driverlistdeleted.idleState;
 
     final url = "${BaseUrl + DriverlistUrl}/$urlId/";
     final header = {"Authorization": "Bearer " + accesstoken};
