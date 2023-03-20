@@ -19,7 +19,6 @@ class BusListProvider extends ChangeNotifier {
   List<BusList>? buslist = [];
   BuslistServiceStatus buslistServiceStatus = BuslistServiceStatus.idleState;
   Future BuslistService() async {
-    await LoginServiceProvider.instance.login();
     await LoginServiceProvider.instance.refreshTokencall();
 
     final url_id1 = LoginServiceProvider.instance.urlId;

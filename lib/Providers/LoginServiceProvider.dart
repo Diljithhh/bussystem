@@ -24,10 +24,10 @@ class LoginServiceProvider extends ChangeNotifier {
   LoginServiceProvider();
   Loginstatus loginstatus = Loginstatus.notLogined;
 
-  Future login() async {
+  Future login({required String username,required String password}) async {
     loginstatus = Loginstatus.inProgress;
     final Url = BaseUrl + logInApi;
-    final body = {"username": "admin_user", "password": "123admin789"};
+    final body = {"username": username, "password": password};
     http.Response response = await http.post(Uri.parse(Url), body: body);
     if (response.statusCode == 200) {
       try {
