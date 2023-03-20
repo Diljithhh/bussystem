@@ -25,6 +25,7 @@ class LoginServiceProvider extends ChangeNotifier {
   Loginstatus loginstatus = Loginstatus.notLogined;
 
   Future login() async {
+    loginstatus = Loginstatus.inProgress;
     final Url = BaseUrl + logInApi;
     final body = {"username": "admin_user", "password": "123admin789"};
     http.Response response = await http.post(Uri.parse(Url), body: body);
@@ -32,10 +33,10 @@ class LoginServiceProvider extends ChangeNotifier {
       try {
         final decodedData = jsonDecode(response.body);
         //  print("decodedata$decodedData");
-        loginstatus = Loginstatus.isLogined;
         accessToken = decodedData['access'];
         refreshToken = decodedData['refresh'];
         urlId = decodedData['url_id'];
+        loginstatus = Loginstatus.isLogined;
         notifyListeners();
 
         // print("accesstoken $accessToken");
@@ -45,6 +46,8 @@ class LoginServiceProvider extends ChangeNotifier {
         log(response.statusCode);
         notifyListeners();
       }
+    } else {
+      return print(response.statusCode);
     }
   }
 

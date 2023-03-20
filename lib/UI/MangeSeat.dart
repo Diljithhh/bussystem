@@ -79,6 +79,8 @@ class _MangeSeatState extends State<MangeSeat> {
                 ],
               ),
             ),
+  
+  SizedBox(height: 20,),
             Expanded(child: oneTwoSeatLayout())
           ],
         ),
@@ -95,7 +97,7 @@ class oneTwoSeatLayout extends StatelessWidget {
     return ListView.separated(
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          SeatWidget1_2();
+      return    SeatWidget1_23();
         },
         separatorBuilder: (context, index) => SizedBox(
               height: 10,
@@ -129,6 +131,45 @@ class SeatWidget1_2 extends StatelessWidget {
         SizedBox(
           width: 60,
         ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        )
+      ],
+    );
+  }
+}
+
+
+
+class SeatWidget1_23 extends StatelessWidget {
+  const SeatWidget1_23({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 20,
+        ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        ),
+        SizedBox(
+          width: 50,
+        ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        ),
+     SizedBox(width: 10,),  
         Container(
           child: Image.asset('assets/images/Seat.png'),
         ),

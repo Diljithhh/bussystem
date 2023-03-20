@@ -1,3 +1,4 @@
+import 'package:bussystem/Providers/DriverListProvider.dart';
 import 'package:bussystem/UI/LaunchScreen.dart';
 import 'package:bussystem/UI/MangeDriver.dart';
 import 'package:bussystem/UI/MangeSeat.dart';
@@ -68,12 +69,13 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => ManageDriver(),
                         ));
+                 await   DriverListProvider.instance.getDriverList();
                   },
                   child: Container(
                     height: 180,
