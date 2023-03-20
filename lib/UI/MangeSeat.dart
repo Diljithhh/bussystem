@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class MangeSeat extends StatefulWidget {
@@ -76,8 +78,9 @@ class _MangeSeatState extends State<MangeSeat> {
                   Image.asset('assets/images/driver.png')
                 ],
               ),
-            )
-       , oneTwoSeatLayout()  ],
+            ),
+            Expanded(child: oneTwoSeatLayout())
+          ],
         ),
       ),
     );
@@ -89,21 +92,53 @@ class oneTwoSeatLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [SizedBox(height: 20,),
-        Row(mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              padding: EdgeInsets.only(right: 50,top: 40),
-              child: Image.asset('assets/images/DriverSeat.png'),),
-          ],
+    return ListView.separated(
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          SeatWidget1_2();
+        },
+        separatorBuilder: (context, index) => SizedBox(
+              height: 10,
+            ),
+        itemCount: 3);
+  }
+}
+
+class SeatWidget1_2 extends StatelessWidget {
+  const SeatWidget1_2({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          width: 20,
         ),
-    Row(
-      
-      children: [ Container(child: Image.asset('assets/images/Seat.png'),), SizedBox(width: 10,),  
-     Container(child: Image.asset('assets/images/Seat.png'),),
-     SizedBox(width: 60,),
-     Container(child: Image.asset('assets/images/Seat.png'),),Container(child: Image.asset('assets/images/Seat.png'),)],)  ],
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        ),
+        SizedBox(
+          width: 60,
+        ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Container(
+          child: Image.asset('assets/images/Seat.png'),
+        )
+      ],
     );
   }
 }
