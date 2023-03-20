@@ -1,10 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 
 class MangeSeat extends StatefulWidget {
-  const MangeSeat({super.key});
-
+  const MangeSeat({
+    Key? key,
+    required this.seatCount,
+    required this.layOut,
+  }) : super(key: key);
+  final String seatCount;
+  final String layOut;
   @override
   State<MangeSeat> createState() => _MangeSeatState();
 }
@@ -79,9 +85,13 @@ class _MangeSeatState extends State<MangeSeat> {
                 ],
               ),
             ),
-  
-  SizedBox(height: 20,),
-            Expanded(child: oneTwoSeatLayout())
+            SizedBox(
+              height: 20,
+            ),
+            Expanded(
+                child: oneTwoSeatLayout(layOut: widget.layOut,
+              seatCount: widget.seatCount,
+            ))
           ],
         ),
       ),
@@ -89,20 +99,32 @@ class _MangeSeatState extends State<MangeSeat> {
   }
 }
 
-class oneTwoSeatLayout extends StatelessWidget {
-  const oneTwoSeatLayout({super.key});
+class oneTwoSeatLayout extends StatefulWidget {
+  const oneTwoSeatLayout({
+    Key? key,
+    required this.seatCount,
+    required this.layOut,
+  }) : super(key: key);
 
+  final String seatCount;
+  final String layOut;
+
+  @override
+  State<oneTwoSeatLayout> createState() => _oneTwoSeatLayoutState();
+}
+
+class _oneTwoSeatLayoutState extends State<oneTwoSeatLayout> {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
         shrinkWrap: true,
         itemBuilder: (context, index) {
-      return    SeatWidget1_23();
+          return widget.layOut == '2*2' ? SeatWidget1_2() : SeatWidget1_23();
         },
         separatorBuilder: (context, index) => SizedBox(
               height: 10,
             ),
-        itemCount: 3);
+        itemCount: widget.layOut=="2*2"?(int.parse(widget.seatCount)/4).toInt():(int.parse(widget.seatCount)/5).toInt());
   }
 }
 
@@ -145,8 +167,6 @@ class SeatWidget1_2 extends StatelessWidget {
   }
 }
 
-
-
 class SeatWidget1_23 extends StatelessWidget {
   const SeatWidget1_23({
     super.key,
@@ -169,7 +189,9 @@ class SeatWidget1_23 extends StatelessWidget {
         Container(
           child: Image.asset('assets/images/Seat.png'),
         ),
-     SizedBox(width: 10,),  
+        SizedBox(
+          width: 10,
+        ),
         Container(
           child: Image.asset('assets/images/Seat.png'),
         ),

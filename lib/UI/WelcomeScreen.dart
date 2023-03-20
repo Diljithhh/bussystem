@@ -1,4 +1,5 @@
 import 'package:bussystem/Providers/BusListProvider.dart';
+import 'package:bussystem/Providers/DriverListProvider.dart';
 import 'package:bussystem/Providers/LoginServiceProvider.dart';
 import 'package:bussystem/UI/HomeScreen.dart';
 import 'package:bussystem/UI/LaunchScreen.dart';
@@ -107,6 +108,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
                 await LoginServiceProvider.instance.login();
                 await BusListProvider.instance.BuslistService();
+                await BusListProvider.instance.getSeatdetailslocal();
               },
               width: 300,
               height: 60,

@@ -1,3 +1,4 @@
+import 'package:bussystem/Providers/BusListProvider.dart';
 import 'package:bussystem/Providers/DriverListProvider.dart';
 import 'package:bussystem/Providers/LoginServiceProvider.dart';
 import 'package:bussystem/UI/LaunchScreen.dart';
@@ -17,20 +18,28 @@ class HomeScreenUi extends StatefulWidget {
 
 class _HomeScreenUiState extends State<HomeScreenUi> {
   late LoginServiceProvider loginServiceProvider;
+  late BusListProvider busListProvider;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MultiProvider(providers: [
-        ChangeNotifierProvider.value(value: LoginServiceProvider.instance)
-      ],child: HomeWidget(),),
+      body: MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(value: LoginServiceProvider.instance),
+          ChangeNotifierProvider.value(value: BusListProvider.instance)
+        ],
+        child: HomeWidget(),
+      ),
     );
   }
 
   Widget HomeWidget() {
     return Builder(
       builder: (innercontext) {
+        busListProvider = Provider.of<BusListProvider>(innercontext);
         loginServiceProvider = Provider.of<LoginServiceProvider>(innercontext);
-        return loginServiceProvider.loginstatus==Loginstatus.refreshToken2loaded
+        return loginServiceProvider.loginstatus ==
+                Loginstatus.refreshToken2loaded
             ? SafeArea(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,7 +142,7 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
                     Container(
                         padding: const EdgeInsets.only(left: 20, top: 20),
                         child: Text(
-                          '21 Buses Found',
+                         "${busListProvider.buslist!.length.toString()} bus found",
                           style: TextStyle(color: Colors.grey.shade600),
                         )),
                     const SizedBox(
@@ -141,9 +150,13 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
                     ),
                     Expanded(
                       child: ListView.builder(
-                        itemCount: 10,
+                        itemCount: busListProvider.buslist!.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
+
+
+
+
                           return ListTile(
                             subtitle: const Text('Swift Scania P -Series'),
                             trailing: CustomTextButton(
@@ -157,7 +170,8 @@ class _HomeScreenUiState extends State<HomeScreenUi> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => MangeSeat(),
+                                      builder: (context) => MangeSeat(layOut:busListProvider.buslist![index].seatLayout.toString() ,
+                                      seatCount:busListProvider.buslist![index].seatCount.toString() ),
                                     ));
                               },
                             ),

@@ -7,6 +7,7 @@ import 'package:bussystem/Model/DrivermodelData.dart';
 import 'package:bussystem/Providers/LoginServiceProvider.dart';
 import 'package:bussystem/Utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 enum DriverlistServiceStatus {
@@ -29,10 +30,8 @@ class DriverListProvider extends ChangeNotifier {
 
   final accesstoken = LoginServiceProvider.instance.refreshedAccesstoken;
   DriverlistServiceStatus driverlistsytatus = DriverlistServiceStatus.idleState;
-    DriveraddedStatus driveraddedStatus = DriveraddedStatus.idleState;
-    Driverlistdeleted driverlistdeleted = Driverlistdeleted.idleState;
-
-
+  DriveraddedStatus driveraddedStatus = DriveraddedStatus.idleState;
+  Driverlistdeleted driverlistdeleted = Driverlistdeleted.idleState;
 
   Future getDriverList() async {
     driverlistsytatus = DriverlistServiceStatus.loadingState;
@@ -94,20 +93,17 @@ class DriverListProvider extends ChangeNotifier {
   }
 
   Future deleteDriver({required String id}) async {
-
     final url = "${BaseUrl + DriverlistUrl}/$urlId/";
     final header = {"Authorization": "Bearer " + accesstoken};
 
-
-final body={"driver_id":id};
-    http.Response response = await http.delete(Uri.parse(url),headers:header,body: body );
+    final body = {"driver_id": id};
+    http.Response response =
+        await http.delete(Uri.parse(url), headers: header, body: body);
 
     driverlistdeleted = Driverlistdeleted.deletingState;
 
     if (response.statusCode == 200) {
       driverlistdeleted = Driverlistdeleted.deletedState;
-
-
 
       print('deleted driver');
 
@@ -119,4 +115,6 @@ final body={"driver_id":id};
       return print(response.statusCode);
     }
   }
+
+
 }

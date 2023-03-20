@@ -3,17 +3,17 @@
     "bus_list": [
         {
             "bus_id": 1,
-            "seat_count": 10,
+            "seat_count":40,
             "seat_layout": "2*2"
         },
         {
             "bus_id": 2,
-            "seat_count": 14,
+            "seat_count": 40,
             "seat_layout": "1*2"
         },
         {
             "bus_id": 3,
-            "seat_count": 15,
+            "seat_count": 40,
             "seat_layout": "2*2"
         }
     ]
